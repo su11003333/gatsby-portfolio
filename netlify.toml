@@ -1,10 +1,11 @@
 [build]
-  command = "gatsby build"
+  command = "npm install --legacy-peer-deps && gatsby build"
   publish = "public"
 
 [build.environment]
   NODE_VERSION = "18"
   NPM_VERSION = "9"
+  NPM_FLAGS = "--legacy-peer-deps"
 
 # 客戶端路由重定向（重要！確保 SPA 路由正常運作）
 [[redirects]]
