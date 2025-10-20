@@ -1,0 +1,40 @@
+[build]
+  command = "gatsby build"
+  publish = "public"
+
+[build.environment]
+  NODE_VERSION = "18"
+  NPM_VERSION = "9"
+
+# 客戶端路由重定向（重要！確保 SPA 路由正常運作）
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 靜態資產快取優化
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/page-data/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# 圖片快取
+[[headers]]
+  for = "/uploads/*"
+  [headers.values]
+    Cache-Control = "public, max-age=2592000"

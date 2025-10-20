@@ -21,7 +21,10 @@
       "Read(//var/folders/27/110tjgks1412lcz8f0619qpr0000gn/T/chrome-devtools-mcp-mIJcz0/**)",
       "mcp__chrome-devtools__select_page",
       "mcp__chrome-devtools__evaluate_script",
-      "Read(//var/folders/27/110tjgks1412lcz8f0619qpr0000gn/T/chrome-devtools-mcp-FlpQDt/**)"
+      "Read(//var/folders/27/110tjgks1412lcz8f0619qpr0000gn/T/chrome-devtools-mcp-FlpQDt/**)",
+      "Bash(npm install)",
+      "Bash(npm run build)",
+      "Bash(git add:*)"
     ],
     "deny": [],
     "ask": []
