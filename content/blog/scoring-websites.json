@@ -1,0 +1,23 @@
+{
+  "slug": "scoring-websites",
+  "date": "2025-05-12",
+  "heroImage": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80",
+  "translations": {
+    "en": {
+      "title": "Scoring websites the way I score films",
+      "meta": "Journal · 6 min",
+      "excerpt": "Pairing custom sound design with subtle interactions to shape mood-driven websites.",
+      "tags": ["Sound Design", "Web Audio", "Motion"],
+      "readingTime": "6 min",
+      "body": "To match the emotional arc of my film projects, every website begins with a short musical motif. The melody becomes a guide for scroll fades, hover dynamics, and the pacing of component reveals.\n\nI build adjustable sound layers with Tone.js and the Web Audio API so visitors are welcomed by ambient textures. A control panel lets them mute the sound or switch to a lighter mix when needed.\n\nThis note breaks the process into concept, mixing, and front-end implementation, and includes Ableton and React snippets from recent launches."
+    },
+    "zh": {
+      "title": "像配樂一樣為網站編曲",
+      "meta": "筆記 · 6 分鐘",
+      "excerpt": "結合客製音景與互動節奏，打造以情緒為核心的網站體驗。",
+      "tags": ["聲音設計", "Web Audio", "動態"],
+      "readingTime": "6 分鐘",
+      "body": "為了讓網站呈現出與影像同樣的情緒，我習慣先寫一段短的音樂主題。這段旋律會成為互動節奏的參考，無論是滾動時的淡入淡出，或是按鈕 hover 的強弱都會對應音軌起伏。\n\n接著我會以 Tone.js 與 Web Audio API 建立可調整的聲音層，讓訪客在進入網站時獲得環境音的浸潤。如果使用者不喜歡音樂，也可以在控制面板中關閉，或者換成更輕量的聲響。\n\n這篇筆記整理了我如何把配樂流程拆成三個階段：概念、混音與前端實作，並分享專案中的 Ableton 與 React 範例。"
+    }
+  }
+}

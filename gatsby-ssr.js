@@ -1,5 +1,4 @@
 import * as React from "react";
 import { LocaleProvider } from "./src/context/LocaleContext";
-import "./src/styles/global.css";
 
 export const wrapRootElement = ({ element }) => <LocaleProvider>{element}</LocaleProvider>;

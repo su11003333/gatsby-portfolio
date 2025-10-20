@@ -1,0 +1,44 @@
+{
+  "slug": "city-pulse-radio",
+  "year": 2024,
+  "coverImage": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1400&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80",
+  "tools": ["Figma", "Webflow", "TouchDesigner", "Cinema 4D"],
+  "externalLink": "https://example.com/city-pulse",
+  "translations": {
+    "en": {
+      "title": "City Pulse Radio",
+      "label": "Web experience · 2024",
+      "summary": "Modular site and live visual identity for an experimental online radio station broadcasting from Taipei.",
+      "role": "Art Direction · Webflow Dev · Motion Kit",
+      "tags": [
+        "Web Experience",
+        "Visual Identity",
+        "Audio Reactive"
+      ],
+      "description": "City Pulse Radio needed its live broadcast schedule to feel like the heartbeat of the city. I designed a gritty visual language and built a Webflow module library so producers could launch programme pages and playlists within minutes.\n\nTo extend the atmosphere from on-site events to the web, I delivered a VJ toolkit that plays generative animations reacting to audio inputs, synchronising venue screens and website backgrounds in real time.",
+      "highlights": [
+        "12 Webflow section modules reduced publishing time by 70%",
+        "Web Audio API captured live frequency data to drive Canvas animations",
+        "Delivered social and EDM kits to keep cross-media visuals consistent"
+      ]
+    },
+    "zh": {
+      "title": "City Pulse Radio",
+      "label": "網頁體驗 · 2024",
+      "summary": "為實驗線上電台打造模組化網站與直播視覺識別。",
+      "role": "視覺統籌 · Webflow 開發 · 動態套件",
+      "tags": [
+        "網頁體驗",
+        "視覺識別",
+        "音訊互動"
+      ],
+      "description": "City Pulse Radio 想要在直播時段呈現動態的城市脈搏。我以粗糙顆粒質感為主軸設計視覺語言，並建立一套可即時更新的 Webflow 模組，讓節目製作人可以快速上架節目頁與播放清單。\n\n為了增強現場氛圍，我也製作了 VJ 套件，能在演出現場及網站背景同步播放生成式動畫，並結合音訊反應的圖像。",
+      "highlights": [
+        "建立 12 種 Webflow section 模組，節省 70% 上架時間",
+        "Web Audio API 即時收集頻段資料，驅動 Canvas 動態",
+        "提供社群與 EDM 套件，維持跨媒體一致性"
+      ]
+    }
+  }
+}

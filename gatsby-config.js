@@ -25,8 +25,15 @@ module.exports = {
     {
       resolve: "gatsby-source-filesystem",
       options: {
-        name: "blog",
+        name: "posts",
         path: `${__dirname}/content/blog`
+      }
+    },
+    {
+      resolve: "gatsby-source-filesystem",
+      options: {
+        name: "works",
+        path: `${__dirname}/content/works`
       }
     },
     {
@@ -34,6 +41,13 @@ module.exports = {
       options: {
         name: "images",
         path: `${__dirname}/src/images`
+      }
+    },
+    "gatsby-transformer-json",
+    {
+      resolve: "gatsby-plugin-netlify-cms",
+      options: {
+        modulePath: `${__dirname}/src/cms/cms.js`
       }
     }
   ]

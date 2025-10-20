@@ -1,390 +1,713 @@
 import * as React from "react";
+import { Link } from "gatsby";
 import Layout from "../components/Layout";
+import useAnimateOnScroll from "../hooks/useAnimateOnScroll";
+import { useLocale } from "../context/LocaleContext";
 import "../styles/home.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Navigation } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/effect-coverflow";
+import "swiper/css/navigation";
 
-const tickerMessages = [
-  "Lai Zhao Ting — Web · Graphic · Video · AI",
-  "Portfolio & Journal 2025",
-  "Designing stories across screens"
-];
-
-const studioStats = [
-  { label: "完成專案", value: "40+" },
-  { label: "合作品牌", value: "18" },
-  { label: "影片時數", value: "120+" }
-];
-
-const mosaicProjects = [
-  {
-    id: "01",
-    name: "HORIZON LAB",
-    description: "以 React 與 WebGL 打造科技新創的互動式官網，串接 AI Demo 與客戶洽談流程。",
-    meta: "Web Design · 2024",
-    image: "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1400&q=80"
-  },
-  {
-    id: "02",
-    name: "METROCRAFT",
-    description: "為城市策展活動設計視覺識別與海報系統，延伸至導視、社群模板與印刷品。",
-    meta: "Graphic Design · 2024",
-    image: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1200&q=80"
-  },
-  {
-    id: "03",
-    name: "AURORA RELEASE",
-    description: "結合實拍與生成式 AI 的產品發佈影片，規劃腳本、剪輯與 3D 合成加上動態字幕。",
-    meta: "Video · AI · 2025",
-    image: "https://images.unsplash.com/photo-1526318896980-cf78c088247c?auto=format&fit=crop&w=1200&q=80"
-  }
-];
-
-const manifestoCopy =
-  "我是一名以網頁設計為核心的跨領域創作者，結合平面設計、影片製作與 AI 工具，協助品牌打造完整的數位敘事體驗。從概念到上線，我專注讓每個接觸點都對齊策略與美感。";
-
-const coreServices = [
-  {
-    index: "01",
-    title: "Web Design & Development",
-    description: "規劃資訊架構、互動原型與視覺動態，並以 Webflow 或 React 實作，確保網站效能與 SEO。",
-    deliverables: "IA · UI/UX · Front-end · SEO"
-  },
-  {
-    index: "02",
-    title: "Visual Identity & Print",
-    description: "建立品牌語彙、標誌、色彩與排版系統，延伸至海報、包裝與線下活動物料。",
-    deliverables: "Logo · Guideline · Packaging · Collateral"
-  },
-  {
-    index: "03",
-    title: "Video & AI Storytelling",
-    description: "統籌腳本、分鏡與後製，整合實拍、動態圖像與生成式 AI，加速產出具有記憶點的影片。",
-    deliverables: "Script · Edit · Motion · GenAI"
-  }
-];
-
-const serviceGallery = [
-  {
-    image: "https://images.unsplash.com/photo-1524995997946-a1c2e315a42f?auto=format&fit=crop&w=600&q=80",
-    caption: "Web Flow"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1520174691701-bc555a3404ca?auto=format&fit=crop&w=600&q=80",
-    caption: "Poster Set"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1523528283115-0f6c1cc1b0f5?auto=format&fit=crop&w=600&q=80",
-    caption: "Studio Edit"
-  },
-  {
-    image: "https://images.unsplash.com/photo-1618005198919-d3d4b5a92eee?auto=format&fit=crop&w=600&q=80",
-    caption: "AI Frames"
-  }
-];
-
-const releaseHighlight = {
-  title: "以 AI 與動態設計協助茶飲品牌完成網站 × 影片整合",
-  description:
-    "More Nutrition 的年度改版中，我負責網站體驗設計、Webflow 上線與發佈影片。透過 AI 生成 storyboard 與字幕合成，大幅縮短製作時程。",
-  meta: "Feature Project · 2025",
-  image: "https://images.unsplash.com/photo-1567016376408-0226e4d0fc34?auto=format&fit=crop&w=1400&q=80",
-  credits: "Web UX、Webflow、Video Edit、GenAI"
+const heroImage = "https://images.unsplash.com/photo-1576153192396-180ecef2a715?auto=format&fit=crop&w=1600&q=80";
+const projectImages = {
+  portfolio: "https://images.unsplash.com/photo-1523473827534-86c5ad4f3f02?auto=format&fit=crop&w=1800&q=80",
+  interactive: "https://images.unsplash.com/photo-1515378791036-0648a3ef77b2?auto=format&fit=crop&w=1800&q=80",
+  automation: "https://images.unsplash.com/photo-1517433456452-f9633a875f6f?auto=format&fit=crop&w=1800&q=80",
+  storytelling: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1800&q=80"
 };
 
-const journalEntries = [
+const processImages = [
+  "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1529333166437-7750a6dd5a70?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1200&q=80",
+  "https://images.unsplash.com/photo-1526318472351-c75fcf07015c?auto=format&fit=crop&w=1200&q=80"
+];
+
+const serviceImages = {
+  frontend: "https://images.unsplash.com/photo-1582719478250-c89cae4dc85b?auto=format&fit=crop&w=1600&q=80",
+  backend: "https://images.unsplash.com/photo-1498050108023-c5249f4df085?auto=format&fit=crop&w=1600&q=80",
+  marketing: "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1600&q=80"
+};
+
+const categorySlides = [
   {
-    title: "用 AI 加速網站設計迭代的 6 個流程",
-    meta: "Journal · 6 min",
-    url: "/journal/ai-web-design",
-    summary: "分享我在資訊架構、版型探索與素材生成時整合 Notion AI、Midjourney 與 Figma 變體的方式。"
+    id: "web-experiences",
+    image: "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1600&q=80",
+    translations: {
+      en: {
+        title: "Web Experiences",
+        description: "Immersive single-page journeys with motion-led storytelling."
+      },
+      zh: {
+        title: "網站體驗",
+        description: "以動態敘事打造沉浸式單頁旅程。"
+      }
+    }
   },
   {
-    title: "平面到網頁：如何延伸品牌識別",
-    meta: "Journal · 5 min",
-    url: "/journal/identity-to-web",
-    summary: "解析 MetroCraft 專案中，從海報系統到響應式網站的視覺語彙轉換心得。"
+    id: "brand-systems",
+    image: "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?auto=format&fit=crop&w=1600&q=80",
+    translations: {
+      en: {
+        title: "Brand Systems",
+        description: "Identity kits that stay consistent across print and digital."
+      },
+      zh: {
+        title: "品牌系統",
+        description: "兼顧印刷與數位的一致識別工具。"
+      }
+    }
   },
   {
-    title: "影片製作流程的混合工作法",
-    meta: "Journal · 4 min",
-    url: "/journal/video-hybrid-workflow",
-    summary: "記錄我如何結合實拍、After Effects 與生成式 AI，快速完成發佈影片與動態社群素材。"
+    id: "content-labs",
+    image: "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1600&q=80",
+    translations: {
+      en: {
+        title: "Content Labs",
+        description: "Script, edit, and automate long-form storytelling."
+      },
+      zh: {
+        title: "內容實驗室",
+        description: "腳本、剪輯與自動化結合的長篇敘事。"
+      }
+    }
+  },
+  {
+    id: "ai-collaboration",
+    image: "https://images.unsplash.com/photo-1523473827534-86c5ad4f3f02?auto=format&fit=crop&w=1600&q=80",
+    translations: {
+      en: {
+        title: "AI Collaboration",
+        description: "Prompt-led concepting paired with human finishing."
+      },
+      zh: {
+        title: "AI 共創",
+        description: "Prompt 設計搭配人工後製的視覺概念。"
+      }
+    }
+  },
+  {
+    id: "digital-products",
+    image: "https://images.unsplash.com/photo-1531498860502-7c67cf02f77b?auto=format&fit=crop&w=1600&q=80",
+    translations: {
+      en: {
+        title: "Digital Products",
+        description: "Design systems and component libraries powering SaaS releases."
+      },
+      zh: {
+        title: "數位產品",
+        description: "支撐 SaaS 發布的設計系統與元件庫。"
+      }
+    }
+  },
+  {
+    id: "motion-systems",
+    image: "https://images.unsplash.com/photo-1527766833261-b09c3163a791?auto=format&fit=crop&w=1600&q=80",
+    translations: {
+      en: {
+        title: "Motion Systems",
+        description: "GSAP & WebGL animations aligned with brand tempo."
+      },
+      zh: {
+        title: "動態系統",
+        description: "以 GSAP、WebGL 打造符合品牌節奏的互動。"
+      }
+    }
+  },
+  {
+    id: "sound-branding",
+    image: "https://images.unsplash.com/photo-1511379938547-c1f69419868d?auto=format&fit=crop&w=1600&q=80",
+    translations: {
+      en: {
+        title: "Sound Branding",
+        description: "Original soundscapes that reinforce product rituals."
+      },
+      zh: {
+        title: "聲音識別",
+        description: "以原創聲景強化產品使用儀式。"
+      }
+    }
+  },
+  {
+    id: "docs-playbooks",
+    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=1600&q=80",
+    translations: {
+      en: {
+        title: "Docs & Playbooks",
+        description: "Ops documentation that keeps cross-team launches aligned."
+      },
+      zh: {
+        title: "文件作業",
+        description: "協助跨部門上線的操作手冊與節奏表。"
+      }
+    }
   }
 ];
 
-const closingGallery = [
-  {
-    image: "https://images.unsplash.com/photo-1531297484001-80022131f5a1?auto=format&fit=crop&w=1000&q=80",
-    title: "Portfolio Reel",
-    caption: "Web · Graphic · Video"
+const campaignImage = "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?auto=format&fit=crop&w=1400&q=80";
+const socialImage = "https://images.unsplash.com/photo-1611162616305-c69b3fa7fbe0?auto=format&fit=crop&w=1400&q=80";
+const closingImage = "https://images.unsplash.com/photo-1545239351-1141bd82e8a6?auto=format&fit=crop&w=1600&q=80";
+
+const translations = {
+  en: {
+    hero: {
+      label: "Full-stack engineer · Marketing content producer",
+      titleLines: ["LAI", "ZHAO TING"],
+      paragraphs: [
+        "A full-stack developer who fuses engineering and storytelling to build smooth user journeys while amplifying a brand's voice.",
+        "I balance development and design, constantly learning new tools and openly sharing build notes so every project becomes a repeatable playbook."
+      ],
+      primaryCta: { label: "View projects", to: "/work" },
+      secondaryCta: { label: "Read learning notes", to: "/blog" },
+      badge: "Fullstack Maker",
+      caption: "Tech × Creative × Marketing",
+      imageAlt: "Colourful product packaging arranged on a fabric backdrop"
+    },
+    about: {
+      tag: "About",
+      heading: "Switching between engineering, design, and marketing to keep ideas consistent from concept to launch.",
+      paragraphs: [
+        "I craft fast, brand-led interfaces with React, Vue, and Next.js, then connect Node.js, databases, and APIs to support reliable operations. Every build considers the narrative and user journey so digital experiences reinforce business goals.",
+        "Beyond shipping features, I document project learnings—from marketing scripts and visual design to code optimisation—so teams can see how technical and creative decisions work together."
+      ],
+      timezone: "Taipei Time · GMT +8",
+      contactLabel: "Email me"
+    },
+    projects: {
+      tag: "Projects & Learning",
+      heading: "Projects weaving engineering practice with marketing strategy.",
+      statValue: "04",
+      statCaption: "Cross-disciplinary case studies and sample copy, with more in progress.",
+      items: [
+        {
+          index: "01",
+          title: "Personal portfolio website",
+          subtitle: "React + Tailwind full-stack deployment",
+          image: projectImages.portfolio,
+          alt: "Screens of a personal portfolio website",
+          href: "/work",
+          size: "tall"
+        },
+        {
+          index: "02",
+          title: "Interactive campaign page",
+          subtitle: "Vue · GSAP motion experience",
+          image: projectImages.interactive,
+          alt: "Developer animating a marketing campaign interface",
+          href: "/work",
+          size: "wide"
+        },
+        {
+          index: "03",
+          title: "Automated reporting toolkit",
+          subtitle: "Node.js + Google Sheets API",
+          image: projectImages.automation,
+          alt: "Analytics dashboard and code snippets",
+          href: "/work",
+          size: "square"
+        },
+        {
+          index: "04",
+          title: "Video scripting & editing",
+          subtitle: "Brand storytelling video strategy",
+          image: projectImages.storytelling,
+          alt: "Storyboards and video editing timeline",
+          href: "/blog",
+          size: "wide"
+        }
+      ]
+    },
+    process: {
+      tag: "Process",
+      titleLines: ["Build.", "Measure.", "Share."],
+      description:
+        "From discovery to launch, I validate assumptions with prototypes, adjust momentum through analytics, and publish the behind-the-scenes notes so teams can keep iterating.",
+      imageAlt: "Collage showing cross-disciplinary production"
+    },
+    services: {
+      tag: "Skills & Services",
+      heading: "Engineering, integration, and content strategy working side by side.",
+      items: [
+        {
+          title: "Front-end development",
+          subtitle: "React · Vue · Tailwind · Next.js",
+          body: "Modular UI systems with thoughtful micro-interactions and responsive performance across devices.",
+          cta: "See front-end work",
+          href: "/work",
+          image: serviceImages.frontend
+        },
+        {
+          title: "Back-end & integrations",
+          subtitle: "Node.js · Express · Databases · APIs",
+          body: "Plan data flows, automate reports, and connect marketing stacks so teams operate with reliable pipelines.",
+          cta: "Explore integration flow",
+          href: "/work",
+          image: serviceImages.backend
+        },
+        {
+          title: "Content & marketing production",
+          subtitle: "Scripts · Visuals · Social planning",
+          body: "Pair brand copy with video and social cadence so launches keep momentum after shipping.",
+          cta: "Browse marketing stories",
+          href: "/blog",
+          image: serviceImages.marketing
+        }
+      ]
+    },
+    campaign: {
+      tag: "Creative ethos",
+      headline: "Websites double as a portfolio and a learning log.",
+      body:
+        "Technology builds the structure and content completes the narrative. Visitors can trace each step—from ideation to optimisation—and brands earn trust through transparency.",
+      credit: "Site purpose · 2025",
+      cta: "Read more notes",
+      imageAlt: "Collage of website strategy documents"
+    },
+    categories: {
+      tag: "Categories",
+      heading: "Quick dive into practice themes I explore the most.",
+      ctaPrev: "Previous",
+      ctaNext: "Next"
+    },
+    social: {
+      imageAlt: "Preview of social posts and notebook",
+      caption: "@laizh.dev",
+      body: "Weekly updates on development experiments, marketing tests, and video production workflows.",
+      cta: "Follow the updates"
+    },
+    closing: {
+      title: "LAI ZHAO TING",
+      headline: "Let’s turn ideas into experiences.",
+      body: "Whether you need a site refresh, automation flow, or launch content, I’m happy to map the process and recommend the right technical stack.",
+      button: "Start a collaboration",
+      imageAlt: "Workspace with notebook and laptop"
+    }
   },
-  {
-    image: "https://images.unsplash.com/photo-1533757874894-efb4d7b0813d?auto=format&fit=crop&w=1000&q=80",
-    title: "AI Moodboard",
-    caption: "Exploration · Process"
+  zh: {
+    hero: {
+      label: "全端工程師 · 行銷文宣製作人",
+      titleLines: ["LAI", "ZHAO TING"],
+      paragraphs: [
+        "結合技術與創意的全端開發者，以程式邏輯打造流暢體驗，同時以行銷視覺與內容策略放大專案影響力。",
+        "我在開發與設計之間找到平衡，樂於學習新工具並公開分享製作過程，讓每一次專案都成為可複製的成長紀錄。"
+      ],
+      primaryCta: { label: "查看作品", to: "/work" },
+      secondaryCta: { label: "閱讀學習筆記", to: "/blog" },
+      badge: "Fullstack Maker",
+      caption: "Tech × Creative × Marketing",
+      imageAlt: "色彩繽紛的品牌包裝陳列於布料背景"
+    },
+    about: {
+      tag: "關於我",
+      heading: "在技術、設計與行銷之間靈活切換，讓專案從概念到上線都保持一致。",
+      paragraphs: [
+        "我擅長以 React、Vue 與 Next.js 打造高速又具備品牌感的前端介面，並透過 Node.js、資料庫與 API 整合建立可靠的後端流程。每一次開發都會同步思考內容策略與使用者旅程，確保體驗能服務真正的商業目標。",
+        "除了實作，也持續紀錄專案心得與技術筆記，分享從行銷腳本、視覺設計到程式最佳化的跨領域經驗。希望讓更多團隊看見技術與故事並進的可能性。"
+      ],
+      timezone: "台北時間 · GMT +8",
+      contactLabel: "寫信聯絡"
+    },
+    projects: {
+      tag: "Projects & Learning",
+      heading: "技術實作與行銷策略交織的作品紀錄。",
+      statValue: "04",
+      statCaption: "跨領域專案與示範文案，持續擴充中。",
+      items: [
+        {
+          index: "01",
+          title: "個人作品集網站",
+          subtitle: "React + Tailwind 全端部署",
+          image: projectImages.portfolio,
+          alt: "個人作品集網站畫面",
+          href: "/work",
+          size: "tall"
+        },
+        {
+          index: "02",
+          title: "互動式行銷活動頁面",
+          subtitle: "Vue · GSAP 動畫體驗",
+          image: projectImages.interactive,
+          alt: "行銷活動頁面互動畫面",
+          href: "/work",
+          size: "wide"
+        },
+        {
+          index: "03",
+          title: "自動化報表工具",
+          subtitle: "Node.js + Google Sheets API",
+          image: projectImages.automation,
+          alt: "報表儀表板與程式碼",
+          href: "/work",
+          size: "square"
+        },
+        {
+          index: "04",
+          title: "影片腳本與剪輯企劃",
+          subtitle: "品牌故事影音策略",
+          image: projectImages.storytelling,
+          alt: "分鏡與剪輯畫面",
+          href: "/blog",
+          size: "wide"
+        }
+      ]
+    },
+    process: {
+      tag: "Process",
+      titleLines: ["Build.", "Measure.", "Share."],
+      description:
+        "從需求訪談、原型測試到內容上線，我以技術驗證假設、以數據調整節奏，再把經驗整理成可參考的製作筆記，陪伴團隊持續優化產品。",
+      imageAlt: "跨領域製作流程拼貼"
+    },
+    services: {
+      tag: "Skills & Services",
+      heading: "以技術、整合與內容策略推動專案成果。",
+      items: [
+        {
+          title: "前端開發",
+          subtitle: "React・Vue・Tailwind・Next.js",
+          body: "以模組化程式架構與互動細節打造流暢體驗，確保各裝置都能快速載入。",
+          cta: "查看前端作品",
+          href: "/work",
+          image: serviceImages.frontend
+        },
+        {
+          title: "後端與整合",
+          subtitle: "Node.js・Express・資料庫・API",
+          body: "規劃資料流程與 API 介接，將自動化報表、行銷活動與第三方服務串聯。",
+          cta: "認識整合流程",
+          href: "/work",
+          image: serviceImages.backend
+        },
+        {
+          title: "內容與行銷製作",
+          subtitle: "腳本・視覺・社群策劃",
+          body: "結合品牌文字、影音腳本與社群節奏，讓專案在上線後持續擴散。",
+          cta: "瀏覽行銷案例",
+          href: "/blog",
+          image: serviceImages.marketing
+        }
+      ]
+    },
+    campaign: {
+      tag: "創作理念",
+      headline: "網站是作品展示，也是學習筆記。",
+      body:
+        "我以技術打造骨架，以內容完善敘事，讓訪客看見從想法、設計到實作的完整脈絡，也幫助品牌建立長期信任。",
+      credit: "Site purpose · 2025",
+      cta: "閱讀更多筆記",
+      imageAlt: "網站策略與內容策劃拼貼"
+    },
+    categories: {
+      tag: "分類探索",
+      heading: "快速瀏覽我最常琢磨的製作主題。",
+      ctaPrev: "上一則",
+      ctaNext: "下一則"
+    },
+    social: {
+      imageAlt: "社群筆記分享預覽",
+      caption: "@laizh.dev",
+      body: "每週分享開發實驗、行銷測試與影音製作流程，記錄跨領域製作心得。",
+      cta: "追蹤最新筆記"
+    },
+    closing: {
+      title: "LAI ZHAO TING",
+      headline: "一起把想像變成體驗。",
+      body: "無論是網站重構、流程自動化還是內容行銷專案，我樂於討論需求並分享適合的技術與製作方案。",
+      button: "開始合作討論",
+      imageAlt: "辦公桌與筆記工具"
+    }
   }
-];
+};
 
 const IndexPage = () => {
+  useAnimateOnScroll();
+  const { locale } = useLocale();
+  const copy = translations[locale] ?? translations.en;
+
+  const [currentTime, setCurrentTime] = React.useState(() => new Date());
+
+  const localizedSlides = React.useMemo(
+    () =>
+      categorySlides.map((slide) => {
+        const translation = slide.translations?.[locale] ?? slide.translations?.en;
+        return {
+          id: slide.id,
+          image: slide.image,
+          title: translation?.title ?? slide.id,
+          description: translation?.description ?? "",
+          alt: translation?.title ?? slide.id
+        };
+      }),
+    [locale]
+  );
+
   React.useEffect(() => {
-    if (typeof window === "undefined") {
-      return undefined;
-    }
-
-    const elements = document.querySelectorAll("[data-animate]");
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("is-visible");
-          }
-        });
-      },
-      { threshold: 0.12, rootMargin: "0px 0px -12% 0px" }
-    );
-
-    elements.forEach((element) => observer.observe(element));
-    return () => observer.disconnect();
+    const timer = window.setInterval(() => setCurrentTime(new Date()), 1000);
+    return () => window.clearInterval(timer);
   }, []);
+
+  const formattedTime = new Intl.DateTimeFormat("en-GB", {
+    hour: "2-digit",
+    minute: "2-digit",
+    second: "2-digit",
+    hour12: false,
+    timeZone: "Asia/Taipei"
+  }).format(currentTime);
+
+  const [hours, minutes, seconds] = formattedTime.split(":");
 
   return (
     <Layout>
-      <section className="hero" id="studio">
-        <div className="container hero__container">
-          <div className="hero__info">
-            <div className="hero__meta" data-animate="slide-left">
-              <span className="hero__eyebrow">Lai Zhao Ting · Web / Graphic / Video / AI</span>
-              <span>將多媒體敘事化為具體的品牌體驗</span>
-            </div>
-            <h1 className="hero__title" data-animate="slide-up" style={{ "--delay": "120ms" }}>
-              <span>PORTFOLIO</span>
-              <span>2025</span>
+      <section className="hero hero--visual" data-animate="fade">
+        <div className="container hero__layout">
+          <div className="hero__text">
+            <span className="hero__label">{copy.hero.label}</span>
+            <h1>
+              {copy.hero.titleLines[0]}
+              <br />
+              {copy.hero.titleLines[1]}
             </h1>
-            <p className="hero__lead" data-animate="fade" style={{ "--delay": "220ms" }}>
-              透過網頁設計、平面設計、影片製作與 AI 工具的整合，我協助品牌與團隊打造具辨識度的數位旅程，並用部落格持續記錄實驗與流程。
-            </p>
-            <div className="hero__actions" data-animate="slide-up" style={{ "--delay": "320ms" }}>
-              <a className="button button--primary" href="mailto:hello@example.com">
-                預約合作
-              </a>
-              <a className="button button--ghost" href="#work">
-                查看作品
-              </a>
-            </div>
-            <div className="hero__stats" data-animate="fade" style={{ "--delay": "380ms" }}>
-              {studioStats.map((stat) => (
-                <div className="hero__stat" key={stat.label}>
-                  <span className="hero__stat-number">{stat.value}</span>
-                  <span className="hero__stat-label">{stat.label}</span>
-                </div>
-              ))}
+            {copy.hero.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
+            ))}
+            <div className="hero__actions">
+              <Link className="button button--solid" to={copy.hero.primaryCta.to}>
+                {copy.hero.primaryCta.label}
+              </Link>
+              <Link className="link-arrow" to={copy.hero.secondaryCta.to}>
+                {copy.hero.secondaryCta.label}
+              </Link>
             </div>
           </div>
-          <div className="hero__visual" data-animate="scale-up" style={{ "--delay": "260ms" }}>
-            <figure className="hero__figure">
-              <img
-                src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1200&q=80"
-                alt="個人作品集的設計場景"
-                loading="lazy"
-              />
-              <figcaption>
-                <span>Studio Desk</span>
-                <span>Web · Motion · AI Workflow</span>
-              </figcaption>
-            </figure>
-            <div className="hero__badge">Personal Studio</div>
+          <div className="hero__visual">
+            <div className="hero__visual-frame">
+              <img src={heroImage} alt={copy.hero.imageAlt} />
+            </div>
+            <div className="hero__visual-meta">
+              <span>{copy.hero.badge}</span>
+              <span>{copy.hero.caption}</span>
+            </div>
           </div>
         </div>
-        <div className="hero__ticker" aria-hidden="true">
-          <div className="hero__ticker-track">
-            {tickerMessages.map((message, index) => (
-              <span key={`${message}-a-${index}`}>{message}</span>
+      </section>
+
+      <section className="category-swiper" data-animate="fade" style={{ "--delay": "200ms" }}>
+        <div className="container category-swiper__layout">
+          <div className="category-swiper__intro">
+            <span className="section-tag">{copy.categories.tag}</span>
+            <h2>{copy.categories.heading}</h2>
+          </div>
+          <div className="category-swiper__controls" aria-hidden={localizedSlides.length <= 1}>
+            <button
+              type="button"
+              className="category-swiper__control category-swiper__control--prev"
+              aria-label={copy.categories.ctaPrev}
+            >
+              ←
+            </button>
+            <button
+              type="button"
+              className="category-swiper__control category-swiper__control--next"
+              aria-label={copy.categories.ctaNext}
+            >
+              →
+            </button>
+          </div>
+        </div>
+        <div className="category-swiper__carousel">
+          <Swiper
+            modules={[EffectCoverflow, Navigation]}
+            effect="coverflow"
+            grabCursor
+            centeredSlides
+            slidesPerView="auto"
+            loop
+            navigation={{ prevEl: ".category-swiper__control--prev", nextEl: ".category-swiper__control--next" }}
+            coverflowEffect={{ rotate: 0, stretch: 0, depth: 160, modifier: 1, slideShadows: false }}
+            breakpoints={{
+              0: { coverflowEffect: { depth: 120 } },
+              768: { coverflowEffect: { depth: 160 } }
+            }}
+            className="category-swiper__swiper"
+          >
+            {localizedSlides.map((slide) => (
+              <SwiperSlide className="category-card" key={slide.id}>
+                <figure className="category-card__media">
+                  <img src={slide.image} alt={slide.alt} loading="lazy" />
+                  <span className="category-card__badge">{slide.title}</span>
+                </figure>
+                <div className="category-card__body">
+                  <p>{slide.description}</p>
+                  <Link className="link-arrow" to="/work">
+                    {locale === "en" ? "See related work" : "查看相關作品"}
+                  </Link>
+                </div>
+              </SwiperSlide>
+            ))}
+          </Swiper>
+        </div>
+      </section>
+
+      <section className="studio-story" data-animate="fade" style={{ "--delay": "140ms" }}>
+        <div className="container studio-story__layout">
+          <div className="studio-story__copy">
+            <span className="section-tag">{copy.about.tag}</span>
+            <h2>{copy.about.heading}</h2>
+            {copy.about.paragraphs.map((paragraph) => (
+              <p key={paragraph}>{paragraph}</p>
             ))}
           </div>
-          <div className="hero__ticker-track" aria-hidden="true">
-            {tickerMessages.map((message, index) => (
-              <span key={`${message}-b-${index}`}>{message}</span>
+          <div className="studio-story__meta">
+            <div className="studio-story__time">
+              <span>{hours}</span>
+              <span>{minutes}</span>
+              <span>{seconds}</span>
+            </div>
+            <span className="studio-story__timezone">{copy.about.timezone}</span>
+            <a className="link-arrow" href="mailto:hello@laizhaoting.com">
+              {copy.about.contactLabel}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="portfolio" data-animate="fade" style={{ "--delay": "200ms" }}>
+        <div className="container">
+          <div className="portfolio__header">
+            <span className="section-tag">{copy.projects.tag}</span>
+            <h2>{copy.projects.heading}</h2>
+            <Link className="link-arrow" to="/work">
+              {locale === "en" ? "View all projects" : "查看全部專案"}
+            </Link>
+          </div>
+          <div className="portfolio__grid">
+            <div className="portfolio__stat">
+              <span className="portfolio__stat-number">{copy.projects.statValue}</span>
+              <p>{copy.projects.statCaption}</p>
+            </div>
+            {copy.projects.items.map((project) => (
+              <Link key={project.title} className={`portfolio__item portfolio__item--${project.size}`} to={project.href}>
+                <div className="portfolio__image">
+                  <img src={project.image} alt={project.alt} />
+                </div>
+                <div className="portfolio__meta">
+                  <span className="portfolio__index">{project.index}</span>
+                  <div>
+                    <h3>{project.title}</h3>
+                    <span>{project.subtitle}</span>
+                  </div>
+                  <span className="portfolio__link">{locale === "en" ? "View more" : "查看更多"}</span>
+                </div>
+              </Link>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="showcase" id="work">
-        <div className="container">
-          <header className="showcase__header">
-            <div className="section-label" data-animate="slide-right">
-              Portfolio Log · Web / Graphic / Video
-            </div>
-            <div className="showcase__title" data-animate="slide-up" style={{ "--delay": "120ms" }}>
-              <span className="showcase__ordinal">—25</span>
-              <h2>Selected Projects</h2>
-            </div>
-            <p className="showcase__intro" data-animate="fade" style={{ "--delay": "220ms" }}>
-              從互動式網站到視覺識別與影片企劃，這些專案展示了我如何把策略、設計與技術整合成完整的品牌故事。每個案例也在部落格中記錄了實作筆記。
-            </p>
-          </header>
-          <div className="showcase__grid">
-            {mosaicProjects.map((project, index) => (
-              <article
-                className="showcase__card"
-                data-animate="scale-up"
-                style={{ "--delay": `${160 + index * 80}ms` }}
-                key={project.name}
-              >
-                <div className="showcase__meta">
-                  <span>{project.id}</span>
-                  <span>{project.meta}</span>
+      <section className="collage" data-animate="fade" style={{ "--delay": "260ms" }}>
+        <div className="container collage__layout">
+          <div className="collage__copy">
+            <span className="section-tag">{copy.process.tag}</span>
+            <h2>
+              {copy.process.titleLines[0]}
+              <br />
+              {copy.process.titleLines[1]}
+              <br />
+              {copy.process.titleLines[2]}
+            </h2>
+            <p>{copy.process.description}</p>
+          </div>
+          <div className="collage__stack">
+            {processImages.map((src, index) => (
+              <div key={src} className={`collage__item collage__item--${index}`}>
+                <img src={src} alt={copy.process.imageAlt} />
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="services" data-animate="fade" style={{ "--delay": "320ms" }}>
+        <div className="container services__layout">
+          <div className="services__intro">
+            <span className="section-tag">{copy.services.tag}</span>
+            <h2>{copy.services.heading}</h2>
+          </div>
+          <div className="services__list">
+            {copy.services.items.map((service) => (
+              <article key={service.title} className="service">
+                <div className="service__image">
+                  <img src={service.image} alt={service.title} />
                 </div>
-                <div className="showcase__media">
-                  <img src={project.image} alt={project.name} loading="lazy" />
+                <div className="service__copy">
+                  <header>
+                    <h3>{service.title}</h3>
+                    <h4>{service.subtitle}</h4>
+                  </header>
+                  <p>{service.body}</p>
+                  <Link className="link-arrow" to={service.href}>
+                    {service.cta}
+                  </Link>
                 </div>
-                <h3>{project.name}</h3>
-                <p>{project.description}</p>
               </article>
             ))}
           </div>
         </div>
       </section>
 
-      <section className="manifesto" id="about">
-        <div className="container manifesto__inner">
-          <h2 data-animate="slide-up">Design. Craft. Iterate.</h2>
-          <p data-animate="fade" style={{ "--delay": "140ms" }}>{manifestoCopy}</p>
+      <section className="campaign" data-animate="fade" style={{ "--delay": "380ms" }}>
+        <div className="container campaign__layout">
+          <div className="campaign__image">
+            <img src={campaignImage} alt={copy.campaign.imageAlt} />
+          </div>
+          <div className="campaign__copy">
+            <span className="section-tag">{copy.campaign.tag}</span>
+            <h2>{copy.campaign.headline}</h2>
+            <p>{copy.campaign.body}</p>
+            <div className="campaign__credit">{copy.campaign.credit}</div>
+            <Link className="button button--ghost" to="/blog">
+              {copy.campaign.cta}
+            </Link>
+          </div>
         </div>
       </section>
 
-      <section className="core-services" id="services">
-        <div className="container">
-          <header className="core-services__header">
-            <span className="section-label" data-animate="slide-right">Services</span>
-            <h2 data-animate="slide-up" style={{ "--delay": "100ms" }}>
-              為網站、平面與影片打造一致的語言。
-            </h2>
-          </header>
-          <div className="core-services__layout">
-            <div className="core-services__list">
-              {coreServices.map((service, index) => (
-                <article
-                  className="core-service"
-                  data-animate="slide-up"
-                  style={{ "--delay": `${120 + index * 80}ms` }}
-                  key={service.title}
-                >
-                  <span className="core-service__index">{service.index}</span>
-                  <div>
-                    <h3>{service.title}</h3>
-                    <p>{service.description}</p>
-                    <span className="core-service__deliverables">{service.deliverables}</span>
-                  </div>
-                </article>
-              ))}
+      <section className="social" data-animate="fade" style={{ "--delay": "440ms" }}>
+        <div className="container social__layout">
+          <div className="social__feature">
+            <img src={socialImage} alt={copy.social.imageAlt} />
+          </div>
+          <div className="social__copy">
+            <span className="social__handle">{copy.social.caption}</span>
+            <p>{copy.social.body}</p>
+            <a className="link-arrow" href="https://www.instagram.com" target="_blank" rel="noreferrer">
+              {copy.social.cta}
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section className="closing" data-animate="fade" style={{ "--delay": "500ms" }}>
+        <div className="container closing__layout">
+          <div className="closing__headline">
+            <h2>{copy.closing.title}</h2>
+            <p>{copy.closing.headline}</p>
+          </div>
+          <div className="closing__content">
+            <div className="closing__visual">
+              <img src={closingImage} alt={copy.closing.imageAlt} />
             </div>
-            <div className="core-services__gallery">
-              {serviceGallery.map((item, idx) => (
-                <figure
-                  className="core-services__thumb"
-                  data-animate="scale-up"
-                  style={{ "--delay": `${200 + idx * 80}ms` }}
-                  key={`${item.caption}-${idx}`}
-                >
-                  <img src={item.image} alt={item.caption} loading="lazy" />
-                  <figcaption>{item.caption}</figcaption>
-                </figure>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="impact" id="impact">
-        <div className="container impact__inner">
-          <p data-animate="slide-up">
-            在每一個頁面與畫面中，我把策略、視覺與技術疊合，讓觀者願意停留更久並記住品牌。
-          </p>
-          <div className="impact__meta" data-animate="fade" style={{ "--delay": "160ms" }}>
-            <span>Studio Motto</span>
-            <span>Web · Graphic · Video · AI</span>
-          </div>
-        </div>
-      </section>
-
-      <section className="release" id="release">
-        <div className="container release__grid">
-          <div className="release__info">
-            <span className="section-label" data-animate="slide-right">
-              {releaseHighlight.meta}
-            </span>
-            <h2 data-animate="slide-up" style={{ "--delay": "100ms" }}>{releaseHighlight.title}</h2>
-            <p data-animate="fade" style={{ "--delay": "180ms" }}>{releaseHighlight.description}</p>
-            <span className="release__credits" data-animate="slide-up" style={{ "--delay": "240ms" }}>
-              {releaseHighlight.credits}
-            </span>
-          </div>
-          <figure className="release__media" data-animate="scale-up" style={{ "--delay": "160ms" }}>
-            <img src={releaseHighlight.image} alt="More Nutrition 網站與影片專案" loading="lazy" />
-            <figcaption>More Nutrition · 完整發佈流程</figcaption>
-          </figure>
-        </div>
-      </section>
-
-      <section className="journal" id="journal">
-        <div className="container">
-          <header className="journal__header">
-            <span className="section-label" data-animate="slide-right">Blog</span>
-            <h2 data-animate="slide-up" style={{ "--delay": "100ms" }}>紀錄每一次設計與實驗。</h2>
-          </header>
-          <div className="journal__list">
-            {journalEntries.map((entry, index) => (
-              <a
-                className="journal__item"
-                data-animate="slide-up"
-                style={{ "--delay": `${120 + index * 80}ms` }}
-                href={entry.url}
-                key={entry.title}
-              >
-                <span className="journal__meta">{entry.meta}</span>
-                <h3>{entry.title}</h3>
-                <p>{entry.summary}</p>
-                <span className="journal__arrow">→</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="closing" id="contact">
-        <div className="container">
-          <div className="closing__heading">
-            <span className="closing__label" data-animate="slide-right">Lai Zhao Ting</span>
-            <h2 data-animate="slide-up" style={{ "--delay": "100ms" }}>
-              專注於網站、平面、影片與 AI 的整合創作者。
-            </h2>
-          </div>
-          <div className="closing__gallery">
-            {closingGallery.map((item, index) => (
-              <figure
-                className="closing__card"
-                data-animate="scale-up"
-                style={{ "--delay": `${120 + index * 100}ms` }}
-                key={item.title}
-              >
-                <img src={item.image} alt={item.title} loading="lazy" />
-                <figcaption>
-                  <span>{item.title}</span>
-                  <span>{item.caption}</span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <div className="closing__cta">
-            <p data-animate="fade" style={{ "--delay": "200ms" }}>
-              如果你正在尋找能同時掌握網頁設計、平面設計、影片製作與 AI 工具的合作夥伴，歡迎寫信給我，也可以關注部落格的最新文章。
-            </p>
-            <div className="closing__actions" data-animate="slide-up" style={{ "--delay": "280ms" }}>
-              <a className="button button--primary" href="mailto:hello@example.com">
-                hello@example.com
-              </a>
-              <a className="button button--ghost" href="https://www.linkedin.com" target="_blank" rel="noreferrer">
-                LinkedIn
+            <div className="closing__cta">
+              <p>{copy.closing.body}</p>
+              <div className="closing__links">
+                <a href="mailto:hello@laizhaoting.com">hello@laizhaoting.com</a>
+                <a href="tel:+886912345678">+886 912 345 678</a>
+              </div>
+              <a className="button button--solid" href="mailto:hello@laizhaoting.com">
+                {copy.closing.button}
               </a>
             </div>
           </div>
@@ -398,10 +721,10 @@ export default IndexPage;
 
 export const Head = () => (
   <>
-    <title>Lai Zhao Ting — Web · Graphic · Video · AI</title>
+    <title>賴昭庭｜全端工程師與行銷文宣製作人</title>
     <meta
       name="description"
-      content="Lai Zhao Ting 的個人作品與部落格，專注於網頁設計、平面設計、影片製作與 AI 工具整合。"
+      content="結合 React、Node.js 與行銷內容策略的跨領域製作者，分享網站開發、行銷活動與影音企劃的製作筆記。"
     />
   </>
 );

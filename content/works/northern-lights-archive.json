@@ -1,0 +1,44 @@
+{
+  "slug": "northern-lights-archive",
+  "year": 2025,
+  "coverImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=1600&q=80",
+  "tools": ["Figma", "After Effects", "Stable Diffusion", "Three.js", "Eleventy"],
+  "externalLink": null,
+  "translations": {
+    "en": {
+      "title": "Northern Lights Archive",
+      "label": "Interactive web documentary · 2025",
+      "summary": "A cinematic microsite that blends AI-assisted matte painting, WebGL, and original scoring to document stories from the Arctic Circle.",
+      "role": "Direction · Web Design · WebGL · Motion · Sound",
+      "tags": [
+        "WebGL",
+        "Documentary",
+        "Sound Design"
+      ],
+      "description": "Northern Lights Archive is an interactive web documentary that collects field stories from creators and researchers working in the Arctic circle. I layered practical footage with AI-generated light and ice textures, then stacked the scenes in WebGL to build an immersive narrative space.\n\nThe site follows a timeline structure backed by ambient sound layers, so visitors can move between chapters while listening to my original score. To keep performance consistent across devices, I wrote degradable GLSL effects and added Service Worker caching.",
+      "highlights": [
+        "Hybrid library of AI and live-action textures cut visual production time by 40%",
+        "WebGL timeline synced with dynamic audio tracks to deepen immersion",
+        "Static build deployed with Eleventy + Netlify for flexible updates"
+      ]
+    },
+    "zh": {
+      "title": "Northern Lights Archive",
+      "label": "互動式網頁紀錄片 · 2025",
+      "summary": "以 AI 光影與 WebGL 堆疊的互動紀錄片網站，記錄北極圈的田野故事。",
+      "role": "導演 · 網頁設計 · WebGL · 動態 · 聲音",
+      "tags": [
+        "WebGL",
+        "互動紀錄片",
+        "聲音設計"
+      ],
+      "description": "Northern Lights Archive 是一個互動式網頁紀錄片，記錄北極圈創作者與研究者的田野故事。我以實際拍攝素材作為基底，再透過 AI 生成的光影與冰晶紋理建立場景，最後以 WebGL 動態堆疊成沉浸式的敘事空間。\n\n網站採用敘事時間軸與聲音層次的互動結構，使用者可以自由切換章節，同時聽見我自製的環境配樂。為了確保跨裝置效能，我以 GLSL 寫出可降階的特效，並搭配 Service Worker 緩存。",
+      "highlights": [
+        "AI 與實拍混合的材質庫，縮短 40% 視覺製作時間",
+        "WebGL 與動態音軌同步，營造沉浸式體驗",
+        "以 Eleventy + Netlify 架構靜態站，確保部署與維護彈性"
+      ]
+    }
+  }
+}

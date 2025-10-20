@@ -1,0 +1,136 @@
+backend:
+  name: git-gateway
+  branch: master
+
+local_backend: true
+
+media_folder: "static/uploads"
+public_folder: "/uploads"
+
+collections:
+  - label: "Blog Posts"
+    name: "posts"
+    folder: "content/blog"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Publish Date", name: "date", widget: "datetime", format: "YYYY-MM-DD", time_format: false }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: true }
+      - label: "Translations"
+        name: "translations"
+        widget: "object"
+        fields:
+          - label: "English"
+            name: "en"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Meta Label", name: "meta", widget: "string" }
+              - { label: "Excerpt", name: "excerpt", widget: "text" }
+              - label: "Body"
+                name: "body"
+                widget: "markdown"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - { label: "Reading Time", name: "readingTime", widget: "string" }
+          - label: "Chinese"
+            name: "zh"
+            widget: "object"
+            fields:
+              - { label: "標題", name: "title", widget: "string" }
+              - { label: "分類標籤", name: "meta", widget: "string" }
+              - { label: "摘要", name: "excerpt", widget: "text" }
+              - label: "內文"
+                name: "body"
+                widget: "markdown"
+              - label: "標籤"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "標籤"
+                  name: "tag"
+                  widget: "string"
+              - { label: "閱讀時間", name: "readingTime", widget: "string" }
+
+  - label: "Work Projects"
+    name: "works"
+    folder: "content/works"
+    create: true
+    slug: "{{slug}}"
+    extension: "json"
+    format: "json"
+    fields:
+      - { label: "Slug", name: "slug", widget: "string" }
+      - { label: "Year", name: "year", widget: "number", value_type: "int" }
+      - { label: "Cover Image", name: "coverImage", widget: "image", required: true }
+      - { label: "Hero Image", name: "heroImage", widget: "image", required: true }
+      - label: "Tools"
+        name: "tools"
+        widget: "list"
+        field:
+          label: "Tool"
+          name: "tool"
+          widget: "string"
+      - { label: "External Link", name: "externalLink", widget: "string", required: false }
+      - label: "Translations"
+        name: "translations"
+        widget: "object"
+        fields:
+          - label: "English"
+            name: "en"
+            widget: "object"
+            fields:
+              - { label: "Title", name: "title", widget: "string" }
+              - { label: "Label", name: "label", widget: "string" }
+              - { label: "Summary", name: "summary", widget: "text" }
+              - { label: "Role", name: "role", widget: "string" }
+              - label: "Description"
+                name: "description"
+                widget: "markdown"
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "Tag"
+                  name: "tag"
+                  widget: "string"
+              - label: "Highlights"
+                name: "highlights"
+                widget: "list"
+                field:
+                  label: "Highlight"
+                  name: "highlight"
+                  widget: "string"
+          - label: "中文"
+            name: "zh"
+            widget: "object"
+            fields:
+              - { label: "標題", name: "title", widget: "string" }
+              - { label: "標籤", name: "label", widget: "string" }
+              - { label: "摘要", name: "summary", widget: "text" }
+              - { label: "角色", name: "role", widget: "string" }
+              - label: "敘述"
+                name: "description"
+                widget: "markdown"
+              - label: "標籤"
+                name: "tags"
+                widget: "list"
+                field:
+                  label: "標籤"
+                  name: "tag"
+                  widget: "string"
+              - label: "亮點"
+                name: "highlights"
+                widget: "list"
+                field:
+                  label: "亮點"
+                  name: "highlight"
+                  widget: "string"

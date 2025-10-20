@@ -1,0 +1,29 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(claude mcp add chrome-devtools npx chrome-devtools-mcp@latest:*)",
+      "WebFetch(domain:www.radicalface.com)",
+      "Bash(gatsby develop)",
+      "Bash(npm run develop)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)",
+      "Bash(pkill:*)",
+      "Bash(claude mcp reconnect:*)",
+      "Bash(claude mcp:*)",
+      "Bash(curl:*)",
+      "Bash(npx chrome-devtools-mcp@latest:*)",
+      "mcp__chrome-devtools__list_pages",
+      "mcp__chrome-devtools__navigate_page",
+      "mcp__chrome-devtools__take_snapshot",
+      "mcp__chrome-devtools__take_screenshot",
+      "Read(//var/folders/27/110tjgks1412lcz8f0619qpr0000gn/T/chrome-devtools-mcp-SMQl69/**)",
+      "mcp__chrome-devtools__new_page",
+      "Read(//var/folders/27/110tjgks1412lcz8f0619qpr0000gn/T/chrome-devtools-mcp-mIJcz0/**)",
+      "mcp__chrome-devtools__select_page",
+      "mcp__chrome-devtools__evaluate_script",
+      "Read(//var/folders/27/110tjgks1412lcz8f0619qpr0000gn/T/chrome-devtools-mcp-FlpQDt/**)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

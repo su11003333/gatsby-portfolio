@@ -1,0 +1,31 @@
+{
+  "slug": "ai-collaborator",
+  "date": "2025-04-04",
+  "heroImage": "/uploads/cc2688784b973fd7cff8cb33af0949b6.jpg",
+  "translations": {
+    "en": {
+      "title": "AI as collaborator, not shortcut",
+      "meta": "Journal · 5 min",
+      "excerpt": "How I structure prompts, curation, and post-processing when co-creating visuals with AI tools.",
+      "tags": [
+        "AI",
+        "Process",
+        "Art Direction"
+      ],
+      "readingTime": "5 min",
+      "body": "![](/uploads/cc2688784b973fd7cff8cb33af0949b6.jpg)\n\n<p>AI tools help me explore directions quickly, but the real value is in how I curate the results. Each project gets a prompt library with input parameters and notes on the adjustments that landed.</p>\n<p>I treat generated images as sketches. Photoshop, After Effects, or Cinema 4D adds the tactile finish and removes dataset artefacts so the final visual still feels crafted.</p>\n<p>The article also covers the prompt structures I rely on, texture-mixing strategies, and how I stay transparent about authorship when collaborating with teams.</p>"
+    },
+    "zh": {
+      "title": "把 AI 當成共創夥伴，而不是捷徑",
+      "meta": "筆記 · 5 分鐘",
+      "excerpt": "分享如何規劃提示語、篩選與後製，讓 AI 參與視覺創作。",
+      "tags": [
+        "AI",
+        "流程",
+        "視覺統籌"
+      ],
+      "readingTime": "5 分鐘",
+      "body": "<p>AI 工具讓我能在前期發散時快速看到不同的視覺方向，但真正的價值在於如何策展這些結果。我會為每個專案建立 Prompt Library，並記錄輸入與輸出的調整參數。</p>\n<p>在選用素材時，我會將 AI 生成的圖像視為「草圖」，透過 Photoshop、After Effects 或 Cinema 4D 再加工，保留手工質地並避免資料集裡常見的偏誤。</p>\n<p>文章中包含我最常用的提示語結構、質感混搭策略，以及如何在團隊協作時保持透明與授權。</p>"
+    }
+  }
+}

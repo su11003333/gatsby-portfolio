@@ -1,0 +1,23 @@
+{
+  "slug": "filming-for-web",
+  "date": "2025-03-18",
+  "heroImage": "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?auto=format&fit=crop&w=1600&q=80",
+  "translations": {
+    "en": {
+      "title": "Filming for the browser",
+      "meta": "Journal · 4 min",
+      "excerpt": "Notes on compressing cinematic footage without losing atmosphere on the web.",
+      "tags": ["Video", "Optimization", "Workflow"],
+      "readingTime": "4 min",
+      "body": "When filming for the browser, I start with the final delivery bitrate and colour space in mind so there are no surprises during grading.\n\nMy typical flow: capture in Blackmagic RAW, grade to REC.709 in DaVinci Resolve, export as ProRes, then compress to AV1 or VP9 with ffmpeg and Squoosh before shipping.\n\nI also share mobile testing notes, including how I pair Lottie with video fallbacks to keep motion smooth across devices."
+    },
+    "zh": {
+      "title": "為瀏覽器而拍攝",
+      "meta": "筆記 · 4 分鐘",
+      "excerpt": "記錄如何壓縮電影感影像，同時保留在網頁上的氛圍。",
+      "tags": ["影像", "最佳化", "流程"],
+      "readingTime": "4 分鐘",
+      "body": "在為網頁拍攝影片時，我會先設定最終輸出的資料率與色彩空間，再回推到拍攝流程。這樣可以避免後期調光時才發現細節遺失。\n\n我常用的流程是：以 Blackmagic RAW 拍攝、在 DaVinci Resolve 調整成 REC.709，接著輸出成 ProRes。進入網頁前，再用 ffmpeg 與 Squoosh 將檔案壓縮成 AV1 或 VP9。\n\n文章也分享我在不同裝置測試時的心得，包括如何設定 Lottie 與 video fallback，確保動畫與影片在行動裝置仍然順暢。"
+    }
+  }
+}

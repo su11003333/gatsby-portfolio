@@ -1,0 +1,44 @@
+{
+  "slug": "wildcard-brand-lab",
+  "year": 2023,
+  "coverImage": "https://images.unsplash.com/photo-1520174691701-bc555a3404ca?auto=format&fit=crop&w=1600&q=80",
+  "heroImage": "https://images.unsplash.com/photo-1520174691701-bc555a3404ca?auto=format&fit=crop&w=1600&q=80",
+  "tools": ["Figma", "Glyphs", "Notion", "InDesign"],
+  "externalLink": null,
+  "translations": {
+    "en": {
+      "title": "Wildcard Brand Lab",
+      "label": "Identity · 2023",
+      "summary": "Typography-led identity and launch kit for a remote design studio expanding into APAC.",
+      "role": "Brand Strategy · Identity System · Print",
+      "tags": [
+        "Brand Identity",
+        "Print",
+        "Strategy"
+      ],
+      "description": "Wildcard Brand Lab needed a voice that translated across digital and physical touchpoints for its APAC launch. I built a typographic system that balances grit and technology, plus a shared Figma library covering social, presentation, and proposal materials.\n\nOffline deliverables included a foldable business card that follows the brand's cutting lines and a UV-layered pitch deck cover to underscore the studio's experimental spirit.",
+      "highlights": [
+        "72-page brand guideline spanning digital and print applications",
+        "Figma component library supporting three language layouts",
+        "Introduced a Notion brand asset database for the distributed team"
+      ]
+    },
+    "zh": {
+      "title": "Wildcard Brand Lab",
+      "label": "識別系統 · 2023",
+      "summary": "為遠距設計團隊打造排版導向的品牌識別與上市工具。",
+      "role": "品牌策略 · 識別系統 · 印刷",
+      "tags": [
+        "品牌識別",
+        "印刷",
+        "策略"
+      ],
+      "description": "Wildcard Brand Lab 要進軍 APAC，需要兼具數位與實體的品牌語言。我從字體聲線出發，打造粗獷又具有科技感的排版系統，並為社群素材、簡報與提案 deck 建立共用的 Figma 品牌庫。\n\n同時我也設計了兩套印刷物：可沿線裁切的折紙型名片，以及 UV 層次的 Pitch Deck 封面，強化品牌的實驗性。",
+      "highlights": [
+        "72 頁品牌指引，涵蓋數位與印刷應用",
+        "Figma component library，支援 3 種語系版型",
+        "協助設計團隊導入 Notion 品牌資產資料庫"
+      ]
+    }
+  }
+}
