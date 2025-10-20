@@ -1,4 +1,133 @@
-node_modules
-.cache
-public
+# ===================================
+# Gatsby
+# ===================================
+.cache/
+public/
+
+# ===================================
+# Claude Code
+# ===================================
+.claude/settings.local.json
+
+# ===================================
+# Dependencies
+# ===================================
+node_modules/
+
+# ===================================
+# Logs
+# ===================================
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+lerna-debug.log*
+
+# ===================================
+# Environment Variables
+# ===================================
+.env
+.env.local
+.env.development
+.env.production
+.env.test
+.env*.local
+
+# ===================================
+# Operating System
+# ===================================
+# macOS
 .DS_Store
+.AppleDouble
+.LSOverride
+._*
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# ===================================
+# IDE & Editors
+# ===================================
+# VSCode
+.vscode/
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains
+.idea/
+*.iml
+*.iws
+*.ipr
+out/
+
+# Sublime Text
+*.sublime-workspace
+*.sublime-project
+
+# Vim
+[._]*.s[a-v][a-z]
+[._]*.sw[a-p]
+[._]s[a-rt-v][a-z]
+[._]ss[a-gi-z]
+[._]sw[a-p]
+
+# ===================================
+# Build & Cache
+# ===================================
+.gatsby-context.js
+.contentful.json.cache
+.eslintcache
+.stylelintcache
+
+# ===================================
+# Temporary Files
+# ===================================
+*.tmp
+*.temp
+*.log
+*.pid
+*.seed
+*.pid.lock
+
+# ===================================
+# Optional
+# ===================================
+# 如果不想上傳 CMS 上傳的圖片，取消註解下面這行
+# static/uploads/*.jpg
+# static/uploads/*.png
+# static/uploads/*.gif
+# static/uploads/*.webp
+
+# 設計稿（通常很大，不建議上傳）
+*.psd
+*.sketch
+*.fig
+*.ai
+*.xd
+
+# 影片檔案（太大，建議用外部連結）
+*.mp4
+*.mov
+*.avi
+*.mkv
+*.webm
+
+# 壓縮檔
+*.zip
+*.rar
+*.7z
+*.tar
+*.gz
